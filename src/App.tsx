@@ -20,6 +20,7 @@ function App() {
     },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
+    mode: 'onChange',
   });
 
   const onSubmit = handleSubmit((data) => {
