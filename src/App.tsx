@@ -13,17 +13,21 @@ type FormValues = z.infer<typeof formSchema>;
 function App() {
   const {
     register,
+    watch,
     handleSubmit,
     formState: {
       errors: { email: emailError },
     },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
+    mode: 'onChange',
   });
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   });
+
+  const email = watch('email');
 
   return (
     <div className={styles.app}>
@@ -38,7 +42,7 @@ function App() {
         <button
           type='submit'
           className={styles.submitButton}
-          disabled={!!emailError}
+          disabled={!email || !!emailError}
         >
           Submit
         </button>
