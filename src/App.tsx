@@ -14,6 +14,7 @@ function App() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: {
       errors: { email: emailError },
     },
@@ -24,6 +25,8 @@ function App() {
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   });
+
+  const email = watch('email');
 
   return (
     <div className={styles.app}>
@@ -38,7 +41,7 @@ function App() {
         <button
           type='submit'
           className={styles.submitButton}
-          disabled={!!emailError}
+          disabled={!email || !!emailError}
         >
           Submit
         </button>
