@@ -2,7 +2,7 @@ START=$(date +%s)
 
 for i in {1..10}
 do
-  pnpm run test
+  pnpm vitest --run
 done
 
 END=$(date +%s)
